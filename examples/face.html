@@ -1,0 +1,86 @@
+<!doctype html>
+<head>
+	<title>Line Example</title>
+	<script src="../dist/threebox.js" type="text/javascript"></script>
+	<script src="config.js"></script>
+
+	<script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+	<link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+	<style>
+			body, html { 
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				background:black;
+			}
+			#map { 
+				width: 100%;
+				height: 100%;
+			}
+	</style>
+</head>
+<body>
+	<div id='map' class='map'></div>
+
+	<script>
+
+
+		// this demo generates lineGeometry for 50 lines, and adds them as lines to the map with random widths, and colors based on latitudes of their unique endpoints
+
+		if(!config) console.error("Config not set! Make a copy of 'config_template.js', add in your access token, and save the file as 'config.js'.");
+		
+		mapboxgl.accessToken = config.accessToken;
+        var origin = [116.48583291011985,39.97576206368034,0];
+		var map = new mapboxgl.Map({
+			container: 'map',
+			style: 'mapbox://styles/mapbox/dark-v9',
+			zoom: 20,
+			pitch:45,
+            center: origin
+		});
+
+		// randomly generate some line arcs (not essential for understanding this demo)
+		
+		var lines = [[116.48583291011985,39.97576206368034,0],[116.48582487284388,39.97575169436154,0],[116.48582246580457,39.97573682903757,0],[116.48596739485707,39.97573957846341,0],[116.48596382595765,39.97575305969704,0],[116.48595704617384,39.97575946427618,0],[116.4859545689325,39.97576337685444,0],[116.48583291011985,39.97576206368034,0]]
+
+		console.log('lineGeometries of the lines: ', lines);
+
+		// instantiate threebox
+
+		map.on('style.load', function() {
+
+			map.addLayer({
+				id: 'custom_layer',
+				type: 'custom',
+				onAdd: function(map, mbxContext){
+
+					tb = new Threebox(
+						map, 
+						mbxContext,
+						{defaultLights: true}
+					);
+                    const zoneMaterial = new THREE.MeshBasicMaterial({
+                        color: 0xff0000,
+                        transparent: true,
+                        opacity: .1
+                    })
+					zoneMaterial.onBeforeCompile = function ( shader ) {
+						};
+                    var lineOptions = {
+                        geometry: lines,
+                        material: zoneMaterial
+                    }
+
+                    lineMesh = tb.face(lineOptions);
+
+                    tb.add(lineMesh)
+
+				},
+				
+				render: function(gl, matrix){
+						tb.update();
+				}
+			});
+		});
+	</script>
+</body>
