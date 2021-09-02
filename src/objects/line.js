@@ -1,7 +1,6 @@
 var THREE = require("./../three.js");
 var utils = require("../utils/utils.js");
 var Objects = require('./objects.js');
-console.log(THREE);
 function line(obj){
 
 	obj = utils._validate(obj, Objects.prototype._defaults.line);
