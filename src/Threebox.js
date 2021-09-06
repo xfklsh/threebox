@@ -31,7 +31,7 @@ Threebox.prototype = {
         this.map = map;
 
         // Set up a THREE.js scene
-        this.renderer = new THREE.WebGLRenderer( { 
+        this.renderer = new THREE.WebGLRenderer( {
             alpha: true, 
             antialias: true,
             canvas: map.getCanvas(),
@@ -104,7 +104,7 @@ Threebox.prototype = {
         return this.utils.projectedUnitsPerMeter(lat)
     },
 
-    queryRenderedFeatures: function(point){
+    queryRenderedFeatures: function(point) {
 
         var mouse = new THREE.Vector2();
         

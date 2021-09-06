@@ -19,7 +19,7 @@ function line(obj){
 	// Material
 	matLine = new THREE.LineMaterial( {
 		color: obj.color,
-		linewidth: 1, // in pixels
+		linewidth: obj.width, // in pixels
 		opacity: obj.opacity,
 		dashed: false,
 		dashSize:100,
