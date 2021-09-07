@@ -26,7 +26,7 @@ Threebox.prototype = {
         this.map.repaint = true;
     },
 
-    init: function (map, glContext, options){
+    init: function (map, glContext, options) {
 
         this.map = map;
 

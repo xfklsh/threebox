@@ -17,6 +17,7 @@ function line(obj){
     // const geometry = path.createGeometry(normalized.vertices);
 
 	// Material
+	
 	matLine = new THREE.LineMaterial( {
 		color: obj.color,
 		linewidth: obj.width, // in pixels
