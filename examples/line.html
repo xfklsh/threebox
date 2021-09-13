@@ -98,6 +98,17 @@
 						lineMesh = tb.line(lineOptions);
 
 						tb.add(lineMesh)
+						map.on('mousemove', function(e){
+
+                        // Clear old objects
+
+
+                        // calculate objects intersecting the picking ray
+                        var intersect = tb.queryRenderedFeatures(e.point)[0]
+						if(intersect) {
+							console.log(intersect);
+						}
+                    });
 					}
 
 				},

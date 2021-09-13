@@ -18245,30 +18245,30 @@ function line(obj){
 	var normalized = utils.normalizeVertices(straightProject);
     var flattenedArray = utils.flattenVectors(normalized.vertices);
 
-	var geometry = new THREE.LineGeometry();
-	geometry.setPositions( flattenedArray );
+	// var geometry = new THREE.LineGeometry();
+	// geometry.setPositions( flattenedArray );
 	// geometry.setColors( colors );
-	// const path = new THREE.Path();
-    // const geometry = path.createGeometry(normalized.vertices);
+	const path = new THREE.Path();
+    const geometry = path.createGeometry(normalized.vertices);
 
 	// Material
 	
-	matLine = new THREE.LineMaterial( {
+	matLine = new THREE.LineBasicMaterial( {
 		color: obj.color,
 		linewidth: obj.width, // in pixels
 		opacity: obj.opacity,
-		dashed: false,
-		dashSize:100,
-		gapSize:100
+		// dashed: false,
+		// dashSize:100,
+		// gapSize:100
 	} );
 	
-	matLine.resolution.set( window.innerWidth, window.innerHeight );
-	matLine.isMaterial = true;
-	matLine.transparent = true;
-	matLine.depthWrite = false;
+	// matLine.resolution.set( window.innerWidth, window.innerHeight );
+	// matLine.isMaterial = true;
+	// matLine.transparent = true;
+	// matLine.depthWrite = false;
 
 	// Mesh
-	line = new THREE.Line2( geometry, matLine );
+	line = new THREE.Line( geometry, matLine );
 	line.position.copy(normalized.position);
 	line.computeLineDistances();
 
